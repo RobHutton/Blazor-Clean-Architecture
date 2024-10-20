@@ -1,3 +1,5 @@
+using BlazingBlog.Application;
+using BlazingBlog.Application.Articles;
 using BlazingBlog.WebUI.Server.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+// Dependency Injection
+builder.Services.AddApplication();
+
+// Build App
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
