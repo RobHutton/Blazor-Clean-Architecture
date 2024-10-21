@@ -25,7 +25,7 @@ else
         await Task.Delay(500);
 
         // Get
-        var result = ArticleService.GetAllArticles();
+        var result = await ArticleService.GetAllArticlesAsync();
 
         // Set
         if (result is not null)

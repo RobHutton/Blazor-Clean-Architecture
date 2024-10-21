@@ -1,5 +1,6 @@
 using BlazingBlog.Application;
 using BlazingBlog.Application.Articles;
+using BlazingBlog.Infrastructure;
 using BlazingBlog.WebUI.Server.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddRazorComponents()
 
 // Dependency Injection
 builder.Services.AddApplication();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 // Build App
 var app = builder.Build();

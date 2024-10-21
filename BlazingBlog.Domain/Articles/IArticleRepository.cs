@@ -1,13 +1,12 @@
-﻿using BlazingBlog.Domain.Articles;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazingBlog.Application.Articles
+namespace BlazingBlog.Domain.Articles
 {
-    public interface IArticleService
+    public interface IArticleRepository
     {
         Task<List<Article>> GetAllArticlesAsync();
     }

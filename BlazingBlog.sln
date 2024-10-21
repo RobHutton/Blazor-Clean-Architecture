@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingBlog.Domain", "Blazi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingBlog.Application", "BlazingBlog.Application\BlazingBlog.Application.csproj", "{39E58F53-50FA-42CF-A5D3-8C2184DBEBA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingBlog.Infrastructure", "BlazingBlog.Infrastructure\BlazingBlog.Infrastructure.csproj", "{C35D80E2-B8BB-4316-B34C-4CC6FEC0A74F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{39E58F53-50FA-42CF-A5D3-8C2184DBEBA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39E58F53-50FA-42CF-A5D3-8C2184DBEBA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39E58F53-50FA-42CF-A5D3-8C2184DBEBA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C35D80E2-B8BB-4316-B34C-4CC6FEC0A74F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C35D80E2-B8BB-4316-B34C-4CC6FEC0A74F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C35D80E2-B8BB-4316-B34C-4CC6FEC0A74F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C35D80E2-B8BB-4316-B34C-4CC6FEC0A74F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 		{A2AB928F-0E58-427D-8134-2396CA4DA252} = {35E2C40F-DF84-4FEE-AA87-AA171A5149EA}
 		{1A6A9D83-EC6D-4A3F-AAA1-13C79729C756} = {35E2C40F-DF84-4FEE-AA87-AA171A5149EA}
 		{39E58F53-50FA-42CF-A5D3-8C2184DBEBA8} = {35E2C40F-DF84-4FEE-AA87-AA171A5149EA}
+		{C35D80E2-B8BB-4316-B34C-4CC6FEC0A74F} = {35E2C40F-DF84-4FEE-AA87-AA171A5149EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {20B5EE19-0224-4E3F-92D5-BA8F0079AF80}
