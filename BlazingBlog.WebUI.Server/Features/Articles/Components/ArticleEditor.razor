@@ -22,7 +22,7 @@ else
 else
 {
     <EditForm FormName="ArticleEditorForm" Model="Article" OnValidSubmit="HandleSubmit">
-        <input type="hidden" @bind-value="Article.Id" />
+        <input type="hidden" name="Article.Id" @bind-value="Article.Id" />
         <InputText class="form-control" @bind-Value="Article.Title"/>
         <InputTextArea class="form-control" @bind-Value="Article.Content" />
         <InputDate class="form-control" @bind-Value="Article.DatePublished" />
@@ -78,6 +78,10 @@ else
             if (result.Success)
             {
                 Article = result.Value.Adapt<ArticleModel>();
+            }
+            else
+            {
+                SetErrorMessage(result.Error);
             }
         }
         else
