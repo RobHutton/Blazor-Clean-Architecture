@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlazingBlog.Application.Articles
+﻿namespace BlazingBlog.Application.Articles
 {
-    public record struct ArticleDto (
+    public record struct ArticleDto(
         int Id,
         string Title,
         string? Content,

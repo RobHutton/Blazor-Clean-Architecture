@@ -33,9 +33,6 @@ else
         var result = await Sender.Send(new GetArticlesQuery());
 
         // Set
-        if (result is not null)
-        {
-            articles = result;    
-        }
+        articles = result.Value ?? new List<ArticleDto>();
     }
 }

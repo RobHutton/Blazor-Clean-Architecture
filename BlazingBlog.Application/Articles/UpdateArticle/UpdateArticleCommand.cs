@@ -1,14 +1,6 @@
-﻿using BlazingBlog.Domain.Articles;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlazingBlog.Application.Articles.UpdateArticle
+﻿namespace BlazingBlog.Application.Articles.UpdateArticle
 {
-    public class UpdateArticleCommand : IRequest<ArticleDto?>
+    public class UpdateArticleCommand : ICommand<ArticleDto?>
     {
         public required int Id { get; set; }
         public required string Title { get; set; }

@@ -77,9 +77,9 @@ else
         {
             var command = Article.Adapt<CreateArticleCommand>();
             var result = await Sender.Send(command);
-            if (result.Id != 0)
+            if (result.Value.Id != 0)
             {
-                NavigationManager.NavigateTo($"/article-editor/{result.Id}");
+                NavigationManager.NavigateTo($"/article-editor/{result.Value.Id}");
             }
             else
             {
@@ -95,8 +95,8 @@ else
             return;
         }
         var command = new DeleteArticleCommand { Id = (int)ArticleId };
-        var ok = await Sender.Send(command);
-        if (ok)
+        var result = await Sender.Send(command);
+        if (result.Success)
         {
             NavigationManager.NavigateTo("/articles");
         }
