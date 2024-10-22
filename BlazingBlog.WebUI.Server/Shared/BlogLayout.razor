@@ -1,0 +1,22 @@
+﻿@inherits LayoutComponentBase
+<div class="antialiased space-y-12 bg-gray-800 text-gray-100">
+	<div class="flex flex-col min-h-screen space-y-12">
+		<header class="container flex items-center justify-between w-full max-w-3xl px-6 py-10 mx-auto xl:max-w-5xl">
+			<a rel="noopener noreferrer" href="#" class="block h-6 text-2xl font-semibold">Leroy Jenkins</a>
+			<div class="flex items-center">
+				<div class="hidden space-x-2 font-medium sm:block">
+					<a rel="noopener noreferrer" href="#" class="p-1">Articles</a>
+				</div>
+			</div>
+		</header>
+		<main class="container flex-1 max-w-3xl px-6 mx-auto space-y-12 xl:max-w-5xl">
+            @Body
+		</main>
+	</div>
+</div>
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+
