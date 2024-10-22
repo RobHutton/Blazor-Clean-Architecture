@@ -8,7 +8,11 @@
 <PageTitle>Articles</PageTitle>
 <h3>Articles</h3>
 <a href="/article-editor" class="btn btn-primary">Create New Article</a>
-@if (articles.Count == 0)
+@if (articles is null)
+{
+    <p>No articles were found.</p>
+}
+else if (articles.Count == 0)
 {
     <p><em>Loading...</em></p>
 }
@@ -23,7 +27,7 @@ else
     }
 }
 @code {
-    private List<ArticleDto> articles = new List<ArticleDto>();
+    private List<ArticleDto>? articles = new List<ArticleDto>();
     protected override async Task OnInitializedAsync()
     {
         // Delay
@@ -33,6 +37,13 @@ else
         var result = await Sender.Send(new GetArticlesQuery());
 
         // Set
-        articles = result.Value ?? new List<ArticleDto>();
+        if (result.Success)
+        {
+            articles = result;
+        }
+        else
+        {
+            articles = new();
+        }
     }
 }

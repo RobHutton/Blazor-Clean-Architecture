@@ -40,9 +40,12 @@ else
         </form>
     }
 }
+<span class="text-danger">@errorMessage</span>
 
 @code {
     private bool isEditMode => ArticleId is not null;
+    private string errorMessage = string.Empty;
+
     [SupplyParameterFromForm]
     ArticleModel? Article { get; set; }
     [Parameter]
@@ -52,9 +55,13 @@ else
         if (ArticleId is not null)
         {
             var result = await Sender.Send(new GetArticleByIdQuery { Id = (int)ArticleId });
-            if (result is not null)
+            if (result.Success)
             {
-                Article ??= result.Adapt<ArticleModel>();
+                Article ??= result.Value.Adapt<ArticleModel>();
+            }
+            else
+            {
+                SetErrorMessage(result.Error);
             }
         }
         else
@@ -68,23 +75,22 @@ else
         {
             var command = Article.Adapt<UpdateArticleCommand>();
             var result = await Sender.Send(command);
-            if (result is not null)
+            if (result.Success)
             {
-                Article = result.Adapt<ArticleModel>();
+                Article = result.Value.Adapt<ArticleModel>();
             }
         }
         else
         {
             var command = Article.Adapt<CreateArticleCommand>();
             var result = await Sender.Send(command);
-            if (result.Value.Id != 0)
+            if (result.Success)
             {
                 NavigationManager.NavigateTo($"/article-editor/{result.Value.Id}");
             }
             else
             {
-                Article = result.Adapt<ArticleModel>();
-                ArticleId = Article.Id;
+                SetErrorMessage(result.Error);
             }
         }
     }
@@ -100,5 +106,13 @@ else
         {
             NavigationManager.NavigateTo("/articles");
         }
+        else
+        {
+            SetErrorMessage(result.Error);
+        }
+    }
+    void SetErrorMessage(string? error)
+    {
+        errorMessage = error ?? string.Empty;
     }
 }

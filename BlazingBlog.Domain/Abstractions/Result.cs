@@ -14,6 +14,7 @@
         public static Result ERR(string error) => new(false, error);
         public static Result<T> OK<T>(T value) => new(value, true, string.Empty);
         public static Result<T> ERR<T>(string error) => new(default, false, error);
+        // Convert value to result
         public static Result<T> FromValue<T>(T? value) => value != null ? OK(value) : ERR<T>("Provided value is null.");
     }
     public class Result<T> : Result
@@ -24,7 +25,9 @@
         {
             Value = value;
         }
+        // Implicitly converts a value to a Result<value>
         public static implicit operator Result<T>(T value) => FromValue(value);
+        // Implicitly converts a Result<value> to a value
         public static implicit operator T?(Result<T> result) => result.Value;
     }
 }
