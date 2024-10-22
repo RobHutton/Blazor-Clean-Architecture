@@ -1,5 +1,4 @@
-﻿using BlazingBlog.Application.Articles;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,10 @@ namespace BlazingBlog.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IArticleService, ArticleService>();
+            services.AddMediatR(configuration =>
+            {
+                configuration.RegisterServicesFromAssemblies(typeof(DependencyInjection).Assembly);
+            });
             return services;
         }
     }

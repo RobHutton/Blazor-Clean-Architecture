@@ -1,0 +1,104 @@
+﻿@page "/article-editor"
+@page "/article-editor/{ArticleId:int}"
+@inject ISender Sender
+@inject NavigationManager NavigationManager
+@attribute [StreamRendering]
+
+@if (isEditMode && Article is not null)
+{
+    <PageTitle>Edit @Article.Title</PageTitle>
+    <h3>Edit @Article.Title</h3>
+}
+else
+{
+    <PageTitle>Create Article</PageTitle>
+    <h3>Create New Article</h3>
+}
+
+@if (Article is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EditForm FormName="ArticleEditorForm" Model="Article" OnValidSubmit="HandleSubmit">
+        <input type="hidden" @bind-value="Article.Id" />
+        <InputText class="form-control" @bind-Value="Article.Title"/>
+        <InputTextArea class="form-control" @bind-Value="Article.Content" />
+        <InputDate class="form-control" @bind-Value="Article.DatePublished" />
+        <div class="form-check">
+            <InputCheckbox class="form-check-input" @bind-Value="Article.IsPublished" />
+            <label class="form-check-label">Is Published</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
+    @if (isEditMode)
+    {
+        <form @onsubmit="DeleteArticle" @formname="ArticleDeleteForm" method="post">
+            <button class="btn btn-danger">Delete Article</button>
+            <AntiforgeryToken />
+        </form>
+    }
+}
+
+@code {
+    private bool isEditMode => ArticleId is not null;
+    [SupplyParameterFromForm]
+    ArticleModel? Article { get; set; }
+    [Parameter]
+    public int? ArticleId { get; set; }
+    protected async override Task OnParametersSetAsync()
+    {
+        if (ArticleId is not null)
+        {
+            var result = await Sender.Send(new GetArticleByIdQuery { Id = (int)ArticleId });
+            if (result is not null)
+            {
+                Article ??= result.Adapt<ArticleModel>();
+            }
+        }
+        else
+        {
+            Article ??= new();
+        }
+    }
+    async Task HandleSubmit()
+    {
+        if (isEditMode)
+        {
+            var command = Article.Adapt<UpdateArticleCommand>();
+            var result = await Sender.Send(command);
+            if (result is not null)
+            {
+                Article = result.Adapt<ArticleModel>();
+            }
+        }
+        else
+        {
+            var command = Article.Adapt<CreateArticleCommand>();
+            var result = await Sender.Send(command);
+            if (result.Id != 0)
+            {
+                NavigationManager.NavigateTo($"/article-editor/{result.Id}");
+            }
+            else
+            {
+                Article = result.Adapt<ArticleModel>();
+                ArticleId = Article.Id;
+            }
+        }
+    }
+    async Task DeleteArticle()
+    {
+        if (ArticleId is null)
+        {
+            return;
+        }
+        var command = new DeleteArticleCommand { Id = (int)ArticleId };
+        var ok = await Sender.Send(command);
+        if (ok)
+        {
+            NavigationManager.NavigateTo("/articles");
+        }
+    }
+}

@@ -1,9 +1,13 @@
 ﻿@page "/articles"
+@using BlazingBlog.Application.Articles
+@using BlazingBlog.Application.Articles.GetArticles
+@using MediatR
+@inject ISender Sender
 @attribute [StreamRendering]
-@inject IArticleService ArticleService
 
 <PageTitle>Articles</PageTitle>
 <h3>Articles</h3>
+<a href="/article-editor" class="btn btn-primary">Create New Article</a>
 @if (articles.Count == 0)
 {
     <p><em>Loading...</em></p>
@@ -15,17 +19,18 @@ else
         <h4>@article.Title</h4>
         <p>@article.Content</p>
         <small>@article.DatePublished</small>
+        <a href="/article-editor/@article.Id" class="btn btn-primary">Edit Article</a>
     }
 }
 @code {
-    private List<Article> articles = new List<Article>();
+    private List<ArticleDto> articles = new List<ArticleDto>();
     protected override async Task OnInitializedAsync()
     {
         // Delay
-        await Task.Delay(500);
+        // await Task.Delay(500);
 
         // Get
-        var result = await ArticleService.GetAllArticlesAsync();
+        var result = await Sender.Send(new GetArticlesQuery());
 
         // Set
         if (result is not null)
