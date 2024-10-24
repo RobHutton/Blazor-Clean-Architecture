@@ -7,5 +7,6 @@
         public string? Content { get; set; }
         public DateTime DatePublished { get; set; } = DateTime.Now;
         public bool IsPublished { get; set; } = false;
+        public string? UserName { get; set; }
     }
 }

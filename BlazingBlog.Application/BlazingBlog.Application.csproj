@@ -21,8 +21,4 @@
     <ProjectReference Include="..\BlazingBlog.Domain\BlazingBlog.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Users\NewFolder\" />
-  </ItemGroup>
-
 </Project>

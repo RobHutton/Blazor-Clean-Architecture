@@ -4,7 +4,9 @@
 @inject NavigationManager NavigationManager
 @attribute [StreamRendering]
 @attribute [Authorize]
-
+@using Microsoft.AspNetCore.Identity
+@using BlazingBlog.Infrastructure.Authentication
+@inject UserManager<User> UserManager
 <PageTitle>@PageTitle</PageTitle>
 <div class="space-y-6 my-4">
     <h1 class="text-3xl font-extrabold text-gray-100">@PageTitle</h1>
@@ -17,19 +19,19 @@
     {
         <EditForm FormName="ArticleEditorForm" Model="Article" OnValidSubmit="HandleSubmit" autocomplete="off">
             <input type="hidden" name="Article.Id" @bind-value="Article.Id" />
-            <div>
+            <div class="mt-2 mb-2">
                 <label for="name" class="text-sm">Title</label>
                 <InputText id="name" autocomplete="off" class="w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" @bind-Value="Article.Title" />
             </div>
-            <div>
+            <div class="mt-2 mb-2">
                 <label for="title" class="text-sm">Content</label>
                 <InputTextArea id="title" autocomplete="off" class="w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" @bind-Value="Article.Content" />
             </div>
-            <div>
+            <div class="mt-2 mb-2">
                 <label for="date" class="text-sm">Publish Date</label>
-                <InputDate id="date" autocomplete="off" class="w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" @bind-Value="Article.DatePublished" />
+                <InputDate id="date" Type="InputDateType.DateTimeLocal" class="w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" @bind-Value="Article.DatePublished" />
             </div>
-            <div>
+            <div class="mt-2 mb-2">
                 <InputCheckbox id="published" class="w-4 h-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2 checked:bg-blue-400" @bind-Value="Article.IsPublished" />
                 <label for="published" class="form-check-label">Is Published</label>
             </div>
@@ -52,12 +54,14 @@
     private bool isEditMode => ArticleId is not null;
     private string errorMessage = string.Empty;
     private string PageTitle =>
-        !string.IsNullOrEmpty(errorMessage) ? "Application Error" : (isEditMode ? "Edit Article" : "Create New Article");
+        !string.IsNullOrEmpty(errorMessage) ? "Application Error" : (isEditMode ? $"Edit \"{(Article?.Title ?? "Article")}\" by {Article?.UserName}" : "Create New Article");
 
     [SupplyParameterFromForm]
     ArticleModel? Article { get; set; }
     [Parameter]
     public int? ArticleId { get; set; }
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
     protected async override Task OnParametersSetAsync()
     {
         if (ArticleId is not null)
@@ -95,6 +99,7 @@
         else
         {
             var command = Article.Adapt<CreateArticleCommand>();
+            command.UserId = UserManager.GetUserId(HttpContext.User);
             var result = await Sender.Send(command);
             if (result.Success)
             {
@@ -116,7 +121,7 @@
         var result = await Sender.Send(command);
         if (result.Success)
         {
-            NavigationManager.NavigateTo("/articles");
+            NavigationManager.NavigateTo("/");
         }
         else
         {
