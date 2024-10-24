@@ -1,0 +1,15 @@
+﻿@page "/logout"
+@using BlazingBlog.Application.Users.LogoutUser
+@inject ISender Sender
+@inject NavigationManager NavigationManager
+
+<h3>Logging out...</h3>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        var command = new LogoutUserCommand();
+        await Sender.Send(command);
+        NavigationManager.NavigateTo("/");
+    }
+}

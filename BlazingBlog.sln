@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingBlog.Domain", "Blazi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingBlog.Application", "BlazingBlog.Application\BlazingBlog.Application.csproj", "{39E58F53-50FA-42CF-A5D3-8C2184DBEBA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingBlog.Infrastructure", "BlazingBlog.Infrastructure\BlazingBlog.Infrastructure.csproj", "{C35D80E2-B8BB-4316-B34C-4CC6FEC0A74F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingBlog.Infrastructure", "BlazingBlog.Infrastructure\BlazingBlog.Infrastructure.csproj", "{C35D80E2-B8BB-4316-B34C-4CC6FEC0A74F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

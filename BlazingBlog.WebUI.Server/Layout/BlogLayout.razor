@@ -2,11 +2,24 @@
 <div class="antialiased space-y-12 bg-gray-800 text-gray-100">
 	<div class="flex flex-col min-h-screen space-y-12">
 		<header class="container flex items-center justify-between w-full max-w-3xl px-6 py-10 mx-auto xl:max-w-5xl">
-			<a rel="noopener noreferrer" href="#" class="block h-6 text-2xl font-semibold">Leroy Jenkins</a>
+			<a rel="noopener noreferrer" href="#" class="block h-6 text-2xl font-semibold">Rob Hutton</a>
 			<div class="flex items-center">
 				<div class="hidden space-x-2 font-medium sm:block">
-					<a rel="noopener noreferrer" href="#" class="p-1">Articles</a>
+					<AuthorizeView>
+						<span class="p-1 mr-4" style="color:coral;">Welcome, @(context.User.Identity?.Name ?? "Guest")</span>
+					</AuthorizeView>
+					<a href="/" class="p-1">Articles</a>
+					<AuthorizeView>
+						<NotAuthorized>
+							<a href="/register" class="p-1">Register</a>
+							<a href="/login" class="p-1">Login</a>
+						</NotAuthorized>
+						<Authorized>
+							<a href="/logout" class="p-1">Sign Out</a>
+						</Authorized>
+					</AuthorizeView>
 				</div>
+
 			</div>
 		</header>
 		<main class="container flex-1 max-w-3xl px-6 mx-auto space-y-12 xl:max-w-5xl">

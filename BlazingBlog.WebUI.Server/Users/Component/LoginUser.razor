@@ -1,0 +1,47 @@
+﻿@page "/login"
+@using BlazingBlog.Application.Users.LoginUser
+@inject ISender Sender
+@inject NavigationManager NavigationManager
+
+<PageTitle>Login</PageTitle>
+<div class="space-y-6 my-4">
+    <h1 class ="text-3xl font-extrabold text-gray-100">Login</h1>
+    <EditForm FormName="LoginUserForm" Model="UserModel" OnValidSubmit="HandleSubmit">
+        <DataAnnotationsValidator/>
+        <div>
+            <label for="username" class="text-sm">Username</label>
+            <InputText id="username" @bind-Value="UserModel.UserName" class="mt-2 mb-2 w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" />
+            <ValidationMessage For="() => UserModel.UserName" class="text-danger" />
+        </div>
+        <div>
+            <label for="password" class="text-sm">Password</label>
+            <InputText id="password" type="password" @bind-Value="UserModel.Password" class="mt-2 mb-2 w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" />
+            <ValidationMessage For="() => UserModel.Password" class="text-danger" />
+        </div>
+        <button type="submit" class="w-full p-3 text-sm font-bold tracking-wide uppercase rounded text-gray-50 bg-sky-600 mt-2 mb-2">Login</button>
+    </EditForm>
+    <span class="text-danger">@errorMessage</span>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private LoginUserModel UserModel { get; set; } = new();
+    private string errorMessage = string.Empty;
+    async Task HandleSubmit()
+    {
+        var command = new LoginUserCommand
+        {
+            UserName = UserModel.UserName,
+            Password = UserModel.Password
+        };
+        var result = await Sender.Send(command);
+        if (result.Success)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+            errorMessage = result.Error ?? "Login failed.";
+        }
+    }
+}
