@@ -1,0 +1,48 @@
+﻿@page "/articles/{ArticleId:int}"
+@inject ISender Sender
+@attribute [StreamRendering]
+
+<PageTitle>@article.Title</PageTitle>
+
+<div class="space-y-6 my-4">
+    <h1 class="text-3xl font-extrabold text-gray-100">@article.Title</h1>
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <h2 class="text-3xl font-extrabold text-gray-100">Error</h2>
+        <p class="text-danger">@errorMessage</p>
+        <span class="tet-xs-start text-gray-400">
+            <time>@article.DatePublished</time>
+            <span>by @article.UserName</span>
+            @if (article.CanEdit)
+            {
+                <span>
+                    | <a href="/article-editor/@article.Id" class="text-sm text-sky-600 font-bold">Edit Article</a>
+                </span>
+            }
+        </span>
+        <h3 class="text-2xl font-bold tracking-tight">
+            <a href="/articles/@article.Id" class="text-2xl font-bold">@article.Title</a>
+        </h3>
+        <p class="max-w-full dark:text-gray-800 prose prose-invert">@article.Content</p>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int ArticleId { get; set; }
+    private ArticleDto article;
+    private string errorMessage = string.Empty;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var result = await Sender.Send(new GetArticleByIdQuery { Id = (int)ArticleId });
+        if (result.Success && result.Value is not null)
+        {
+            article = (ArticleDto)result.Value;
+        }
+        else
+        {
+            errorMessage = result.Error ?? "Sorry, something went wrong.";
+        }
+    }
+}

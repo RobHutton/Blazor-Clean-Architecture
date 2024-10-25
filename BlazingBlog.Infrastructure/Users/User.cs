@@ -2,7 +2,7 @@
 using BlazingBlog.Domain.Users;
 using Microsoft.AspNetCore.Identity;
 
-namespace BlazingBlog.Infrastructure.Authentication
+namespace BlazingBlog.Infrastructure.Users
 {
     public class User : IdentityUser, IUser
     {

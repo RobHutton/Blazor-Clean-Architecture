@@ -1,17 +1,39 @@
-﻿namespace BlazingBlog.Application.Articles.CreateArticle
+﻿using BlazingBlog.Application.Exceptions;
+using BlazingBlog.Application.Users;
+
+namespace BlazingBlog.Application.Articles.CreateArticle
 {
     public class CreateArticleCommandHandler : ICommandHandler<CreateArticleCommand, ArticleDto>
     {
         private readonly IArticleRepository _articleRepository;
-        public CreateArticleCommandHandler(IArticleRepository articleRepository)
+        private readonly IUserService _userService;
+        public CreateArticleCommandHandler(IArticleRepository articleRepository, IUserService userService)
         {
             _articleRepository = articleRepository;
+            _userService = userService;
         }
         public async Task<Result<ArticleDto>> Handle(CreateArticleCommand request, CancellationToken cancellationToken)
         {
-            var newArticle = request.Adapt<Article>();
-            var article = await _articleRepository.CreateArticleAsync(newArticle);
-            return article.Adapt<ArticleDto>();
+            try
+            {
+                var newArticle = request.Adapt<Article>();
+                newArticle.UserId = await _userService.GetCurrentUserIdAsync();
+                if (!await _userService.CurrentUserCanCreateArticleAsync())
+                {
+                    return FailingResult("You are not authorized to create an article.");
+                }
+                var article = await _articleRepository.CreateArticleAsync(newArticle);
+                return article.Adapt<ArticleDto>();
+            }
+            catch (UserNotAuthorizedException)
+            {
+                return FailingResult("An error occurred creating the article.");
+            }
+
+        }
+        private Result<ArticleDto> FailingResult(string msg)
+        {
+            return Result.ERR<ArticleDto>(msg ?? "Failed to create article.");
         }
     }
 }

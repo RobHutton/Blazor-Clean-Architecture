@@ -6,7 +6,9 @@
         string? Content,
         DateTime DatePublished,
         bool IsPublished,
-        string UserName
+        string UserName,
+        string UserId,
+        bool CanEdit
     )
     { }
 }

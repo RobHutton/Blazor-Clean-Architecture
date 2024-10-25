@@ -3,58 +3,63 @@
 @inject ISender Sender
 @inject NavigationManager NavigationManager
 @attribute [StreamRendering]
-@attribute [Authorize]
-@using Microsoft.AspNetCore.Identity
-@using BlazingBlog.Infrastructure.Authentication
-@inject UserManager<User> UserManager
+@attribute [Authorize(Roles = "Admin, Writer")]
+@using BlazingBlog.Application.Articles.GetArticleForEdit
+@using BlazingBlog.Infrastructure.Users
 <PageTitle>@PageTitle</PageTitle>
 <div class="space-y-6 my-4">
     <h1 class="text-3xl font-extrabold text-gray-100">@PageTitle</h1>
-
-    @if (Article is null)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else
-    {
-        <EditForm FormName="ArticleEditorForm" Model="Article" OnValidSubmit="HandleSubmit" autocomplete="off">
-            <input type="hidden" name="Article.Id" @bind-value="Article.Id" />
-            <div class="mt-2 mb-2">
-                <label for="name" class="text-sm">Title</label>
-                <InputText id="name" autocomplete="off" class="w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" @bind-Value="Article.Title" />
-            </div>
-            <div class="mt-2 mb-2">
-                <label for="title" class="text-sm">Content</label>
-                <InputTextArea id="title" autocomplete="off" class="w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" @bind-Value="Article.Content" />
-            </div>
-            <div class="mt-2 mb-2">
-                <label for="date" class="text-sm">Publish Date</label>
-                <InputDate id="date" Type="InputDateType.DateTimeLocal" class="w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" @bind-Value="Article.DatePublished" />
-            </div>
-            <div class="mt-2 mb-2">
-                <InputCheckbox id="published" class="w-4 h-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2 checked:bg-blue-400" @bind-Value="Article.IsPublished" />
-                <label for="published" class="form-check-label">Is Published</label>
-            </div>
-            <button type="submit" class="w-full p-3 text-sm font-bold tracking-wide uppercase rounded text-gray-50 bg-sky-600">Submit</button>
-        </EditForm>
+    <AuthorizeView>
+        <Authorized Context="authContext">
+            @if (Article is null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+                <EditForm FormName="ArticleEditorForm" Model="Article" OnValidSubmit="HandleSubmit" autocomplete="off">
+                    <input type="hidden" name="Article.Id" @bind-value="Article.Id" />
+                    <div class="mt-2 mb-2">
+                        <label for="name" class="text-sm">Title</label>
+                        <InputText id="name" autocomplete="off" class="w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" @bind-Value="Article.Title" />
+                    </div>
+                    <div class="mt-2 mb-2">
+                        <label for="title" class="text-sm">Content</label>
+                        <InputTextArea id="title" autocomplete="off" class="w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" @bind-Value="Article.Content" />
+                    </div>
+                    <div class="mt-2 mb-2">
+                        <label for="date" class="text-sm">Publish Date</label>
+                        <InputDate id="date" Type="InputDateType.DateTimeLocal" class="w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" @bind-Value="Article.DatePublished" />
+                    </div>
+                    <div class="mt-2 mb-2">
+                        <InputCheckbox id="published" class="w-4 h-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mr-2 checked:bg-blue-400" @bind-Value="Article.IsPublished" />
+                        <label for="published" class="form-check-label">Is Published</label>
+                    </div>
+                    <button type="submit" class="w-full p-3 text-sm font-bold tracking-wide uppercase rounded text-gray-50 bg-sky-600">Submit</button>
+                </EditForm>
     
-        @if (isEditMode)
-        {
-            <form @onsubmit="DeleteArticle" @formname="ArticleDeleteForm" method="post" class="space-y-6 my-4">
-                <h2 class="text-3xl font-extrabold text-gray-100">Danger Zone</h2>
-                <button class="p-3 text-sm font-bold tracking-wide uppercase rounded text-gray-50 bg-red-600">Delete Article</button>
-                <AntiforgeryToken />
-            </form>
-        }
-    }
-    <span class="text-danger">@errorMessage</span>
+                @if (isEditMode)
+                {
+                    <form @onsubmit="DeleteArticle" @formname="ArticleDeleteForm" method="post" class="space-y-6 my-4">
+                        <h2 class="text-3xl font-extrabold text-gray-100">Danger Zone</h2>
+                        <button class="p-3 text-sm font-bold tracking-wide uppercase rounded text-gray-50 bg-red-600">Delete Article</button>
+                        <AntiforgeryToken />
+                    </form>
+                }
+            }
+            <span class="text-danger">@errorMessage</span>
+        </Authorized>
+        <NotAuthorized>
+            Back it on up.
+        </NotAuthorized>
+    </AuthorizeView>
 </div>
 
 @code {
     private bool isEditMode => ArticleId is not null;
     private string errorMessage = string.Empty;
     private string PageTitle =>
-        !string.IsNullOrEmpty(errorMessage) ? "Application Error" : (isEditMode ? $"Edit \"{(Article?.Title ?? "Article")}\" by {Article?.UserName}" : "Create New Article");
+        !string.IsNullOrEmpty(errorMessage) ? "Error" : (isEditMode ? $"Edit \"{(Article?.Title ?? "Article")}\"" : "Create New Article");
 
     [SupplyParameterFromForm]
     ArticleModel? Article { get; set; }
@@ -66,7 +71,7 @@
     {
         if (ArticleId is not null)
         {
-            var result = await Sender.Send(new GetArticleByIdQuery { Id = (int)ArticleId });
+            var result = await Sender.Send(new GetArticleForEditQuery { Id = (int)ArticleId });
             if (result.Success)
             {
                 Article ??= result.Value.Adapt<ArticleModel>();
@@ -99,7 +104,6 @@
         else
         {
             var command = Article.Adapt<CreateArticleCommand>();
-            command.UserId = UserManager.GetUserId(HttpContext.User);
             var result = await Sender.Send(command);
             if (result.Success)
             {
