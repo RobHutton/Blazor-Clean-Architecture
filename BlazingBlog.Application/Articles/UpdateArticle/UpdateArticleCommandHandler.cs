@@ -24,13 +24,13 @@ namespace BlazingBlog.Application.Articles.UpdateArticle
                 var result = await _articleRepository.UpdateArticleAsync(updateArticle);
                 if (result is null)
                 {
-                    return Result.ERR<ArticleDto?>("Failed to get article.");
+                    return Result.ERR<ArticleDto?>("Failed to get this article.");
                 }
                 return result.Adapt<ArticleDto>();
             }
             catch (UserNotAuthorizedException)
             {
-                return Result.ERR<ArticleDto?>("An error occurred updating the article.");
+                return Result.ERR<ArticleDto?>("An error occurred updating this article.");
             }
         }
     }

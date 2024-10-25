@@ -6,8 +6,8 @@
         <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(Layout.BlogLayout)">
             <Authorizing>
                 <p>Authorizing...</p>
-            </Authorizing>
-            <NotAuthorized>
+            </Authorizing> 
+             <NotAuthorized>
                 @if (HttpContextAccessor.HttpContext?.User?.Identity?.IsAuthenticated ?? false)
                 {
                     <p>You are not authorized to view this page.</p>

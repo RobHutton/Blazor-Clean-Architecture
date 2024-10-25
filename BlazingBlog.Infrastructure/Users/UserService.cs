@@ -1,6 +1,6 @@
 ﻿using BlazingBlog.Application.Exceptions;
 using BlazingBlog.Application.Users;
-using BlazingBlog.Infrastructure.Repositories;
+using BlazingBlog.Domain.Articles;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
@@ -9,10 +9,10 @@ namespace BlazingBlog.Infrastructure.Users
     public class UserService : IUserService
     {
         private readonly UserManager<User> _userManager;
-        private readonly HttpContextAccessor _httpContextAccessor;
-        private readonly ArticleRepository _articleRepository;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IArticleRepository _articleRepository;
 
-        public UserService(HttpContextAccessor httpContextAccessor, UserManager<User> userManager, ArticleRepository articleRepository)
+        public UserService(IHttpContextAccessor httpContextAccessor, UserManager<User> userManager, IArticleRepository articleRepository)
         {
             _userManager = userManager;
             _articleRepository = articleRepository;

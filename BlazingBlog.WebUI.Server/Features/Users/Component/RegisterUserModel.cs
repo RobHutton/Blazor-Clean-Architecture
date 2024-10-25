@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BlazingBlog.WebUI.Server.Users.Component
+namespace BlazingBlog.WebUI.Server.Features.Users.Component
 {
     public class RegisterUserModel
     {
