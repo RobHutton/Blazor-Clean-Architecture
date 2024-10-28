@@ -17,7 +17,7 @@ namespace BlazingBlog.Application.Users.LoginUser
             {
                 return Result.OK();
             }
-            return Result.ERR("Invalid username or password.");
+            return Result.Fail("Invalid username or password.");
         }
     }
 }

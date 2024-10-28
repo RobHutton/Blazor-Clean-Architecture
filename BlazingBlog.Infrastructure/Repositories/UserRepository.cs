@@ -14,6 +14,14 @@ namespace BlazingBlog.Infrastructure.Repositories
             _userManager = userManager;
             _context = context;
         }
+
+        public async Task<List<IUser>> GetAllUsersAsync()
+        {
+            return await _userManager.Users
+                .Select(user => (IUser)user)
+                .ToListAsync();
+        }
+
         public async Task<IUser?> GetUserByIdAsync(string userId)
         {
             return await _userManager.FindByIdAsync(userId);
@@ -21,7 +29,8 @@ namespace BlazingBlog.Infrastructure.Repositories
 
         public async Task<List<IUser>> GetUsersByIdsAsync(IEnumerable<string> userIds)
         {
-            return await _context.Users
+            return await _userManager.Users
+                .Select(user => (IUser)user)
                 .Where(u => userIds.Contains(u.Id))
                 .Cast<IUser>()
                 .ToListAsync();

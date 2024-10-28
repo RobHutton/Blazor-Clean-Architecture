@@ -8,54 +8,61 @@
 <PageTitle>Articles</PageTitle>
 <h1 class ="text-3xl font-extrabold text-gray-100">Articles</h1>
 <AuthorizeView Roles="Admin, Writer">
-    <a href="/article-editor" class="p-3 text-sm font-bold tracking-wide uppercase rounded text-gray-50 bg-sky-600 inline-block">Create New Article</a>
+    <a href="/article-editor" class="p-3 text-sm font-bold tracking-wide uppercase rounded text-gray-50 bg-sky-600 inline-block">Create Article</a>
 </AuthorizeView>
-@if (articles is null)
-{
-    <p>No articles were found.</p>
-}
-else if (articles.Count == 0)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <div class="space-y-6">
-    <ul class="space-y-8 xl:space-y-10">
-        @foreach(var article in articles)
-        {
-		    <li>
-			    <article>
-				    <dl>
-					    <dt class="sr-only">Published on</dt>
-					    <dd class="text-xs text-gray-400">
-                            <time>@article.DatePublished</time>
-                            <span>by @article.UserName</span>
-					    </dd>
-				    </dl>
-				    <div class="space-y-1">
-					    <h3 class="text-2xl font-bold tracking-tight">
-                            <AuthorizeView>
-                                <Authorized><a href="/article-editor/@article.Id" class="text-blue-100">@article.Title</a></Authorized>
-                                <NotAuthorized>@article.Title</NotAuthorized>
-                            </AuthorizeView>
-					    </h3>
-                        <p class="max-w-full dark:text-gray-800 prose prose-invert">@article.Content</p>
-                            @if (article.CanEdit)
-                            {
-                                <div class="flex flex-wrap space-x-3">
-                                    <a href="/article-editor/@article.Id" class="text-sm text-sky-600 font-bold">Edit Article</a>
-                                </div>
-                            }
-				    </div>
-			    </article>
-		    </li>
-        }
-    </ul>
-    </div>
-}
+<div class="space-y-6">
+    @if (articles is null)
+    {
+        <p><em>Loading articles...</em></p>
+    }
+    else if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <p><span class="text-danger">@errorMessage</span></p>
+    }
+    else if (articles.Count <= 0)
+    {
+        <p>No articles could be found.</p>
+    }
+    else
+    {
+        <ul class="space-y-8 xl:space-y-10">
+            @foreach (var article in articles)
+            {
+                <li>
+                    <article>
+                        <dl>
+                            <dt class="sr-only">Published on</dt>
+                            <dd class="text-xs text-gray-400">
+                                <time>@article.DatePublished</time>
+                                <span>by @article.UserName</span>
+                                @if (article.CanEdit)
+                                {
+                                    <span>
+                                        | <a href="/article-editor/@article.Id" class="text-xs text-sky-600 font-bold">Edit</a>
+                                    </span>
+                                }
+                            </dd>
+                        </dl>
+                        <div class="space-y-1">
+                            <h3 class="text-2xl font-bold tracking-tight">
+                                <AuthorizeView>
+                                    <Authorized><a href="/article-editor/@article.Id" class="text-blue-100">@article.Title</a></Authorized>
+                                    <NotAuthorized>@article.Title</NotAuthorized>
+                                </AuthorizeView>
+                            </h3>
+                            <p class="max-w-full">@article.Content</p>
+                        </div>
+                    </article>
+                </li>
+            }
+        </ul>
+    }
+</div>
+
 @code {
-    private List<ArticleDto>? articles = new List<ArticleDto>();
+    private List<ArticleDto>? articles;
+    private string errorMessage = string.Empty;
+    private const string _err = "Failed to get articles.";
     protected override async Task OnInitializedAsync()
     {
         // Delay
@@ -71,6 +78,7 @@ else
         }
         else
         {
+            errorMessage = result.Error ?? _err;
             articles = new();
         }
     }

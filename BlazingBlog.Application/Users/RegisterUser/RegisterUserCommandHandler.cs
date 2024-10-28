@@ -15,9 +15,9 @@ namespace BlazingBlog.Application.Users.RegisterUser
             var result = await _authenticationService.RegisterUserAsync(request.UserName, request.UserEmail, request.Password);
             if (result.Succeeded)
             {
-                Result.OK();
+                return Result.OK();
             }
-            return Result.ERR($"{string.Join(", ", result.Errors)}");
+            return Result.Fail($"{string.Join(", ", result.Errors)}");
         }
     }
 }

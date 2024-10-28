@@ -21,7 +21,7 @@ namespace BlazingBlog.Application.Articles.GetArticlebyId
             var article = await _articleRepository.GetArticleByIdAsync(request.Id);
             if (article is null)
             {
-                return Result.ERR<ArticleDto?>("Failed to get article.");
+                return Result.Fail<ArticleDto?>("Failed to get article.");
             }
             var articleDto = article.Adapt<ArticleDto>();
             if (article.UserId is not null)

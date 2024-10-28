@@ -9,6 +9,9 @@
 						<span class="p-1 mr-4" style="color:coral;">Welcome, @(context.User.Identity?.Name ?? "Guest")</span>
 					</AuthorizeView>
 					<a href="/" class="p-1">Articles</a>
+					<AuthorizeView Roles="Admin">
+						<a href="/users">Registered Users</a>
+					</AuthorizeView>
 					<AuthorizeView>
 						<NotAuthorized>
 							<a href="/register" class="p-1">Register</a>

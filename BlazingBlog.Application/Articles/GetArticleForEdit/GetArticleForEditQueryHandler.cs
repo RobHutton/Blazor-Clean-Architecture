@@ -16,7 +16,7 @@ namespace BlazingBlog.Application.Articles.GetArticleForEdit
             var canEdit = await _userService.CurrentUserCanEditArticleAsync(request.Id);
             if (!canEdit)
             {
-                return Result.ERR<ArticleDto?>("You are not authorized to edit this article.");
+                return Result.Fail<ArticleDto?>("You are not authorized to edit this article.");
             }
             var article = await _articleRepository.GetArticleByIdAsync(request.Id);
             var articleDto = article.Adapt<ArticleDto>();

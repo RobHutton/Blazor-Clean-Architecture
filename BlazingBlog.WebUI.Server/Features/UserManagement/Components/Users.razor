@@ -1,0 +1,81 @@
+﻿@page "/users"
+@rendermode @(new InteractiveServerRenderMode(false))
+@attribute [Authorize(Roles = "Admin")]
+@inject ISender Sender
+
+<PageTitle>Users</PageTitle>
+<h1 class="text-3xl font-extrabold text-gray-100">Registered Users</h1>
+<div class="space-y-6">
+    @if (users is null)
+    {
+        <p><em>Loading users...</em></p>
+    }
+    else if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <p><span class="text-danger">@errorMessage</span></p>
+    }
+    else if (users.Count <= 0)
+    {
+        <p>No users could be found.</p>
+    }
+    else
+    {
+        <QuickGrid Items="users.AsQueryable()">
+            <PropertyColumn Property="@(p => p.UserName)" Sortable="true" Title="User Name"></PropertyColumn>
+            <PropertyColumn Property="@(p => p.Email)" Sortable="true" Title="Email Address"></PropertyColumn>
+            <PropertyColumn Property="@(p => p.Roles)" Sortable="true" Title="Role(s)"></PropertyColumn>
+            <TemplateColumn Title="Action">
+                <button @onclick="() => OpenModal(context.Id, context.UserName)" 
+                    class="p-2 text-sm font-bold rounded text-sky-600"
+                    hover: bg-blue-300
+                >
+                    🔒 Manage Roles
+                </button>
+            </TemplateColumn>
+        </QuickGrid>
+    }
+    <UserRolesModal ShowModal="@showModal" UserId="@selectedUserId" UserName="@selectedUserName" ModalClosed="CloseModal"/>
+</div>
+@code {
+    private List<UserDto>? users;
+    private bool showModal = false;
+    private string selectedUserId = string.Empty;
+    private string selectedUserName = string.Empty;
+    private string errorMessage = string.Empty;
+    private string _err = "Failed to get users.";
+    protected override async Task OnInitializedAsync()
+    {
+        // Delay
+        // await Task.Delay(2000);
+        await LoadUsers();
+    }
+    private async Task LoadUsers()
+    {
+        var result = await Sender.Send(new GetUsersQuery());
+        if (result.Success)
+        {
+            users = result.Value!;
+        }
+        else
+        {
+            users = new();
+            errorMessage = result.Error ?? _err;
+        }
+    }
+    private void OpenModal(string userId, string userName)
+    {
+        selectedUserId = userId;
+        selectedUserName = userName;
+        showModal = true;
+        Console.WriteLine($"Open Modal -> {selectedUserName} // {selectedUserId}");
+    }
+    private async Task CloseModal()
+    {
+        showModal = false;
+        await LoadUsers();
+        // if above didn't make component rerender
+        // this statement explicitly will
+        // but we don't need it
+        // StateHasChanged();
+    }
+}

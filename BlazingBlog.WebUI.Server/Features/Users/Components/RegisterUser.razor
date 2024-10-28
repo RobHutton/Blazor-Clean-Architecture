@@ -8,25 +8,24 @@
     <h1 class ="text-3xl font-extrabold text-gray-100">Create Account</h1>
     <EditForm FormName="RegisterUserForm" Model="UserModel" OnValidSubmit="HandleSubmit" autocomplete="off">
         <DataAnnotationsValidator/>
-        @* <ValidationSummary class="text-danger" role="alert" /> *@
         <div>
-            <label for="username" class="text-sm">Username</label>
-            <InputText id="username" autocomplete="off" @bind-Value="UserModel.UserName" class="mt-2 mb-2 w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" />
+            <label for="register-username" class="text-sm">User Name</label>
+            <InputText id="register-username" inputmode="text" autocomplete="register-username" @bind-Value="UserModel.UserName" class="mt-2 mb-2 w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" />
             <ValidationMessage For="() => UserModel.UserName" class="text-danger" />
         </div>
         <div>
-            <label for="email" class="text-sm">Email Address</label>
-            <InputText id="email" autocomplete="off" @bind-Value="UserModel.Email" class="mt-2 mb-2 w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" />
+            <label for="register-email" class="text-sm">Email Address</label>
+            <InputText id="register-email" autocomplete="register-email" @bind-Value="UserModel.Email" class="mt-2 mb-2 w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" />
             <ValidationMessage For="() => UserModel.Email" class="text-danger" />
         </div>
         <div>
-            <label for="password" class="text-sm">Password</label>
-            <InputText id="password" type="password" autocomplete="off" @bind-Value="UserModel.Password" class="mt-2 mb-2 w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" />
+            <label for="register-password" class="text-sm">Password</label>
+            <InputText id="register-password" type="password" autocomplete="new-password" @bind-Value="UserModel.Password" class="mt-2 mb-2 w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" />
             <ValidationMessage For="() => UserModel.Password" class="text-danger" />
         </div>
         <div>
-            <label for="confirmpassword" type="password" class="text-sm">Confirm Password</label>
-            <InputText id="confirmpassword" autocomplete="off" @bind-Value="UserModel.ConfirmPassword" class="mt-2 mb-2 w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" />
+            <label for="register-confirmpassword" class="text-sm">Confirm Password</label>
+            <InputText id="register-confirmpassword" type="password" autocomplete="new-password-confirm" @bind-Value="UserModel.ConfirmPassword" class="mt-2 mb-2 w-full p-3 rounded bg-gray-800 border-gray-400 border-1 focus:border-blue-400 focus:border-blue-500" />
             <ValidationMessage For="() => UserModel.ConfirmPassword" class="text-danger" />
         </div>
         <button type="submit" class="w-full p-3 text-sm font-bold tracking-wide uppercase rounded text-gray-50 bg-sky-600 mt-2 mb-2">Register</button>

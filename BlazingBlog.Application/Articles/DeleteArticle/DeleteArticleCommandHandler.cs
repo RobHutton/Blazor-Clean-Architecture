@@ -34,7 +34,7 @@ namespace BlazingBlog.Application.Articles.DeleteArticle
         }
         private Result<ArticleDto> FailingResult(string msg)
         {
-            return Result.ERR<ArticleDto>(msg ?? "Failed to delete article.");
+            return Result.Fail<ArticleDto>(msg ?? "Failed to delete article.");
         }
     }
 }

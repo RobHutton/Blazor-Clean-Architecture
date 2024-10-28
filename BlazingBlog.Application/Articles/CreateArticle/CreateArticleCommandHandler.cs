@@ -33,7 +33,7 @@ namespace BlazingBlog.Application.Articles.CreateArticle
         }
         private Result<ArticleDto> FailingResult(string msg)
         {
-            return Result.ERR<ArticleDto>(msg ?? "Failed to create article.");
+            return Result.Fail<ArticleDto>(msg ?? "Failed to create article.");
         }
     }
 }
