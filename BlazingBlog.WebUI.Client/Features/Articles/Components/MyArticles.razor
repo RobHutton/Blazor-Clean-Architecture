@@ -1,0 +1,97 @@
+﻿@page "/my-articles"
+@rendermode @(new InteractiveWebAssemblyRenderMode(false))
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>My Articles</h3>
+<PageTitle>My Articles</PageTitle>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p><span class="text-danger">@errorMessage</span></p>
+}
+@if (articles is null)
+{
+    <span><em>Loading articles...</em></span>
+}
+else if (articles.Count == 0)
+{
+    <span>No articles were found.</span>
+}
+else
+{
+<QuickGrid Items="articles.AsQueryable()">
+    <PropertyColumn 
+        Title="Title"
+        Property="@(a => a.Title)" 
+        Sortable="true" 
+    />
+    <TemplateColumn Title="Published">
+        @if(context.IsPublished)
+        {
+            <span>✅</span>
+        }
+        else
+        {
+            <span>❌</span>
+        }
+    </TemplateColumn>
+    <PropertyColumn 
+        Title="Date Published"
+        Property="@(a => a.DatePublished.ToString("yyyy-MM-dd HH:mm"))" 
+        Sortable="true" 
+    />
+    <TemplateColumn Title="Action">
+        <button @onclick="() => EditArticle(context.Id)" 
+            class="p-2 text-sm font-bold tracking-wide rounded text-gray-50 bg-sky-600"
+            hover: bg-blue-300
+        >
+            ✏️ Edit
+        </button>
+    </TemplateColumn>
+        <TemplateColumn Title="Action">
+            <button @onclick="() => TogglePublishArticle(context.Id)"
+                    class="p-2 text-sm font-bold tracking-wide rounded text-gray-50 bg-sky-600"
+                    hover: bg-blue-300>
+               @(context.IsPublished ? "Unpublish" : "Publish")
+            </button>
+        </TemplateColumn>
+</QuickGrid>
+}
+
+@code {
+    private List<ArticleDto>? articles;
+    private string errorMessage = string.Empty;
+    protected override async Task OnInitializedAsync()
+    {
+        articles = await Http.GetFromJsonAsync<List<ArticleDto>>("/api/articles");
+        if (articles is null)
+        {
+            articles = [];
+        }
+    }
+    private void EditArticle(int id)
+    {
+        NavigationManager.NavigateTo($"/article-editor/{id}");
+    }
+    private async Task TogglePublishArticle(int id)
+    {
+        Console.Write("TogglePublishArticle", id);
+        var result = await Http.PatchAsync($"api/Articles/{id}", null);
+        if (result.IsSuccessStatusCode && articles is not null)
+        {
+            var updatedArticle = await result.Content.ReadFromJsonAsync<ArticleDto>();
+            var index = articles.FindIndex(a => a.Id == id);
+            if (index != -1)
+            {
+                articles[index] = updatedArticle;
+                // Explicit refresh
+                // StateHasChanged();
+            }
+        }
+        else
+        {
+            errorMessage = await result.Content.ReadAsStringAsync();
+        }
+    }
+}
