@@ -1,7 +1,7 @@
 ﻿@page "/my-articles"
-@rendermode @(new InteractiveWebAssemblyRenderMode(false))
-@inject HttpClient Http
+@rendermode @(new InteractiveAutoRenderMode(true))
 @inject NavigationManager NavigationManager
+@inject IArticlesViewService ArticlesViewService
 
 <h3>My Articles</h3>
 <PageTitle>My Articles</PageTitle>
@@ -64,7 +64,7 @@ else
     private string errorMessage = string.Empty;
     protected override async Task OnInitializedAsync()
     {
-        articles = await Http.GetFromJsonAsync<List<ArticleDto>>("/api/articles");
+        articles = await ArticlesViewService.GetArticlesByCurrentUserAsync();
         if (articles is null)
         {
             articles = [];
@@ -77,21 +77,18 @@ else
     private async Task TogglePublishArticle(int id)
     {
         Console.Write("TogglePublishArticle", id);
-        var result = await Http.PatchAsync($"api/Articles/{id}", null);
-        if (result.IsSuccessStatusCode && articles is not null)
+        var updatedArticle = await ArticlesViewService.TogglePublishArticleAsync(id);
+        if (updatedArticle is null || articles is null)
         {
-            var updatedArticle = await result.Content.ReadFromJsonAsync<ArticleDto>();
-            var index = articles.FindIndex(a => a.Id == id);
-            if (index != -1)
-            {
-                articles[index] = updatedArticle;
-                // Explicit refresh
-                // StateHasChanged();
-            }
+            errorMessage = "Failed to toggle article publication.";
+            return;
         }
-        else
+        var index = articles!.FindIndex(a => a.Id == id);
+        if (index != -1)
         {
-            errorMessage = await result.Content.ReadAsStringAsync();
+            articles[index] = (ArticleDto)updatedArticle;
+            // Explicit refresh
+            // StateHasChanged();
         }
     }
 }

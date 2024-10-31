@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BlazorCleanArchitecture.Application.Articles;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorCleanArchitecture.Application
 {
@@ -10,6 +11,7 @@ namespace BlazorCleanArchitecture.Application
             {
                 configuration.RegisterServicesFromAssemblies(typeof(DependencyInjection).Assembly);
             });
+            services.AddScoped<IArticlesViewService, ArticlesViewService>();
             return services;
         }
     }
