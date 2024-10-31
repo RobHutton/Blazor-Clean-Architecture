@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Users.RemoveRoleFromUser
+﻿namespace BlazorCleanArchitecture.Application.Users.RemoveRoleFromUser
 {
     public class RemoveRoleFromUserCommand : ICommand
     {

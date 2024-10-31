@@ -1,6 +1,6 @@
-﻿using BlazingBlog.Domain.Articles;
+﻿using BlazorCleanArchitecture.Domain.Articles;
 
-namespace BlazingBlog.Domain.Users
+namespace BlazorCleanArchitecture.Domain.Users
 {
     // Field names match Microsoft.Identity User
     public interface IUser

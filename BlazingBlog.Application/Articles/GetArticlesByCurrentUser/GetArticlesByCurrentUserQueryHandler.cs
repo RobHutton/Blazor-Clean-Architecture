@@ -1,6 +1,6 @@
-﻿using BlazingBlog.Application.Users;
+﻿using BlazorCleanArchitecture.Application.Users;
 
-namespace BlazingBlog.Application.Articles.GetArticles
+namespace BlazorCleanArchitecture.Application.Articles.GetArticles
 {
 	public class GetArticlesByCurrentUserQueryHandler : IQueryHandler<GetArticlesByCurrentUserQuery, List<ArticleDto>>
 	{

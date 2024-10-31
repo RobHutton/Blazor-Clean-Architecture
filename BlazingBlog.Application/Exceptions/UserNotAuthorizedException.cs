@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Exceptions
+﻿namespace BlazorCleanArchitecture.Application.Exceptions
 {
     public class UserNotAuthorizedException : Exception
     {

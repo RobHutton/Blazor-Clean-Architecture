@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Users.GetUsers
+﻿namespace BlazorCleanArchitecture.Application.Users.GetUsers
 {
     public class GetUserRolesQuery : IQuery<List<string>>
     {

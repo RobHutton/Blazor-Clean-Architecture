@@ -1,7 +1,7 @@
-﻿using BlazingBlog.Application.Exceptions;
-using BlazingBlog.Application.Users;
+﻿using BlazorCleanArchitecture.Application.Exceptions;
+using BlazorCleanArchitecture.Application.Users;
 
-namespace BlazingBlog.Application.Articles.CreateArticle
+namespace BlazorCleanArchitecture.Application.Articles.CreateArticle
 {
     public class CreateArticleCommandHandler : ICommandHandler<CreateArticleCommand, ArticleDto>
     {

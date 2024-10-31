@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Articles.GetArticleForEdit
+﻿namespace BlazorCleanArchitecture.Application.Articles.GetArticleForEdit
 {
     public class GetArticleForEditQuery : IQuery<ArticleDto?>
     {

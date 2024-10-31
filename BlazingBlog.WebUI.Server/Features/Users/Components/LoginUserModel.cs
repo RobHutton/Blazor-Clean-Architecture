@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BlazingBlog.WebUI.Server.Features.Users.Component
+namespace BlazorCleanArchitecture.WebUI.Server.Features.Users.Component
 {
     public class LoginUserModel
     {

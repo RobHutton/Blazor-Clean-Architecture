@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Users.LogoutUser
+﻿namespace BlazorCleanArchitecture.Application.Users.LogoutUser
 {
     public class LogoutUserCommand : ICommand
     {

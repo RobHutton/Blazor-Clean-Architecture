@@ -1,10 +1,10 @@
-﻿using BlazingBlog.Application.Articles;
-using BlazingBlog.Application.Articles.GetArticles;
-using BlazingBlog.Application.Articles.TogglePublishArticle;
+﻿using BlazorCleanArchitecture.Application.Articles;
+using BlazorCleanArchitecture.Application.Articles.GetArticles;
+using BlazorCleanArchitecture.Application.Articles.TogglePublishArticle;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlazingBlog.WebUI.Server.Features.Articles.Controllers
+namespace BlazorCleanArchitecture.WebUI.Server.Features.Articles.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

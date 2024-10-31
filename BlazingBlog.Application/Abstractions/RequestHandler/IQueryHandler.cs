@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace BlazingBlog.Application.Abstractions.RequestHandler
+namespace BlazorCleanArchitecture.Application.Abstractions.RequestHandler
 {
     // CQRS QUERY PATTERN
     // Query Handler responsible for handling queries of type IQuery<TResponse>

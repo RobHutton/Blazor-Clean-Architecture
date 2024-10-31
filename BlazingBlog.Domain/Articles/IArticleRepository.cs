@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Domain.Articles
+﻿namespace BlazorCleanArchitecture.Domain.Articles
 {
 	public interface IArticleRepository
 	{

@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.WebUI.Server.Features.Articles
+﻿namespace BlazorCleanArchitecture.WebUI.Server.Features.Articles
 {
     public class ArticleModel
     {

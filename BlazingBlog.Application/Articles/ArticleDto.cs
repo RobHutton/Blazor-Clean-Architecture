@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Articles
+﻿namespace BlazorCleanArchitecture.Application.Articles
 {
     public record struct ArticleDto(
         int Id,

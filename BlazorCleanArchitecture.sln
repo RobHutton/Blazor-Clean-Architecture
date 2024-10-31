@@ -5,15 +5,15 @@ VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{35E2C40F-DF84-4FEE-AA87-AA171A5149EA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingBlog.WebUI.Server", "BlazingBlog.WebUI.Server\BlazingBlog.WebUI.Server.csproj", "{A2AB928F-0E58-427D-8134-2396CA4DA252}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCleanArchitecture.WebUI.Server", "BlazingBlog.WebUI.Server\BlazorCleanArchitecture.WebUI.Server.csproj", "{A2AB928F-0E58-427D-8134-2396CA4DA252}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingBlog.Domain", "BlazingBlog.Domain\BlazingBlog.Domain.csproj", "{1A6A9D83-EC6D-4A3F-AAA1-13C79729C756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCleanArchitecture.Domain", "BlazingBlog.Domain\BlazorCleanArchitecture.Domain.csproj", "{1A6A9D83-EC6D-4A3F-AAA1-13C79729C756}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingBlog.Application", "BlazingBlog.Application\BlazingBlog.Application.csproj", "{39E58F53-50FA-42CF-A5D3-8C2184DBEBA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCleanArchitecture.Application", "BlazingBlog.Application\BlazorCleanArchitecture.Application.csproj", "{39E58F53-50FA-42CF-A5D3-8C2184DBEBA8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazingBlog.Infrastructure", "BlazingBlog.Infrastructure\BlazingBlog.Infrastructure.csproj", "{C35D80E2-B8BB-4316-B34C-4CC6FEC0A74F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCleanArchitecture.Infrastructure", "BlazingBlog.Infrastructure\BlazorCleanArchitecture.Infrastructure.csproj", "{C35D80E2-B8BB-4316-B34C-4CC6FEC0A74F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingBlog.WebUI.Client", "BlazingBlog.WebUI.Client\BlazingBlog.WebUI.Client.csproj", "{7BCA1086-90AE-45DD-9B62-95243D08CD28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCleanArchitecture.WebUI.Client", "BlazingBlog.WebUI.Client\BlazorCleanArchitecture.WebUI.Client.csproj", "{7BCA1086-90AE-45DD-9B62-95243D08CD28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

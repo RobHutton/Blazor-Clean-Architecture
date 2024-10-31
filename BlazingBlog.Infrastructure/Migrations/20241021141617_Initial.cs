@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BlazingBlog.Infrastructure.Migrations
+namespace BlazorCleanArchitecture.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

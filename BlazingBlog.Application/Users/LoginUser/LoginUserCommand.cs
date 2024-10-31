@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Users.LoginUser
+﻿namespace BlazorCleanArchitecture.Application.Users.LoginUser
 {
     public class LoginUserCommand : ICommand
     {

@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Domain.Users
+﻿namespace BlazorCleanArchitecture.Domain.Users
 {
     public interface IUserRepository
     {

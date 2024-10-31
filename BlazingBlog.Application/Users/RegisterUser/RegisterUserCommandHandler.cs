@@ -1,7 +1,7 @@
 ﻿
-using BlazingBlog.Application.Authentication;
+using BlazorCleanArchitecture.Application.Authentication;
 
-namespace BlazingBlog.Application.Users.RegisterUser
+namespace BlazorCleanArchitecture.Application.Users.RegisterUser
 {
     public class RegisterUserCommandHandler : ICommandHandler<RegisterUserCommand>
     {

@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Articles.UpdateArticle
+﻿namespace BlazorCleanArchitecture.Application.Articles.UpdateArticle
 {
     public class UpdateArticleCommand : ICommand<ArticleDto?>
     {

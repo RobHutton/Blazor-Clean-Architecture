@@ -1,4 +1,4 @@
-﻿global using BlazingBlog.Application.Abstractions.RequestHandler;
-global using BlazingBlog.Domain.Abstractions;
-global using BlazingBlog.Domain.Articles;
+﻿global using BlazorCleanArchitecture.Application.Abstractions.RequestHandler;
+global using BlazorCleanArchitecture.Domain.Abstractions;
+global using BlazorCleanArchitecture.Domain.Articles;
 global using Mapster;

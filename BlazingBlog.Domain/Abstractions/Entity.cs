@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Domain.Abstractions
+﻿namespace BlazorCleanArchitecture.Domain.Abstractions
 {
     public abstract class Entity
     {

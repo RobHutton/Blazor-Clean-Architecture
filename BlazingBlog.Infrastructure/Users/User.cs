@@ -1,8 +1,8 @@
-﻿using BlazingBlog.Domain.Articles;
-using BlazingBlog.Domain.Users;
+﻿using BlazorCleanArchitecture.Domain.Articles;
+using BlazorCleanArchitecture.Domain.Users;
 using Microsoft.AspNetCore.Identity;
 
-namespace BlazingBlog.Infrastructure.Users
+namespace BlazorCleanArchitecture.Infrastructure.Users
 {
     public class User : IdentityUser, IUser
     {

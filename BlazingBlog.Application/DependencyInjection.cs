@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace BlazingBlog.Application
+namespace BlazorCleanArchitecture.Application
 {
     public static class DependencyInjection
     {

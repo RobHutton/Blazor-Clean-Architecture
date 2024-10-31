@@ -1,6 +1,6 @@
-﻿using BlazingBlog.Domain.Users;
+﻿using BlazorCleanArchitecture.Domain.Users;
 
-namespace BlazingBlog.Application.Users.GetUsers
+namespace BlazorCleanArchitecture.Application.Users.GetUsers
 {
     public class GetUserRolesQueryHandler : IQueryHandler<GetUserRolesQuery, List<string>>
     {

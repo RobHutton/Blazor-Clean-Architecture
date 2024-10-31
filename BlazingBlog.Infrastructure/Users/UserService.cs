@@ -1,10 +1,10 @@
-﻿using BlazingBlog.Application.Exceptions;
-using BlazingBlog.Application.Users;
-using BlazingBlog.Domain.Articles;
+﻿using BlazorCleanArchitecture.Application.Exceptions;
+using BlazorCleanArchitecture.Application.Users;
+using BlazorCleanArchitecture.Domain.Articles;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
-namespace BlazingBlog.Infrastructure.Users
+namespace BlazorCleanArchitecture.Infrastructure.Users
 {
     public class UserService : IUserService
     {

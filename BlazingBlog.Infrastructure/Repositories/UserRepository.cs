@@ -1,9 +1,9 @@
-﻿using BlazingBlog.Domain.Users;
-using BlazingBlog.Infrastructure.Users;
+﻿using BlazorCleanArchitecture.Domain.Users;
+using BlazorCleanArchitecture.Infrastructure.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazingBlog.Infrastructure.Repositories
+namespace BlazorCleanArchitecture.Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
     {

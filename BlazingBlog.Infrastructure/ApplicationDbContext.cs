@@ -1,9 +1,9 @@
-﻿using BlazingBlog.Domain.Articles;
-using BlazingBlog.Infrastructure.Users;
+﻿using BlazorCleanArchitecture.Domain.Articles;
+using BlazorCleanArchitecture.Infrastructure.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazingBlog.Infrastructure
+namespace BlazorCleanArchitecture.Infrastructure
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {

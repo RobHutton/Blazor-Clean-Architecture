@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization.Policy;
 using Microsoft.AspNetCore.Http;
 
-namespace BlazingBlog.Infrastructure.Authentication
+namespace BlazorCleanArchitecture.Infrastructure.Authentication
 {
     public class AuthorizationMiddlewareResultHandler : IAuthorizationMiddlewareResultHandler
     {

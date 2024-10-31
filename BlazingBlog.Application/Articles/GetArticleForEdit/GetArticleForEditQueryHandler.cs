@@ -1,6 +1,6 @@
-﻿using BlazingBlog.Application.Users;
+﻿using BlazorCleanArchitecture.Application.Users;
 
-namespace BlazingBlog.Application.Articles.GetArticleForEdit
+namespace BlazorCleanArchitecture.Application.Articles.GetArticleForEdit
 {
     public class GetArticleForEditQueryHandler : IQueryHandler<GetArticleForEditQuery, ArticleDto?>
     {

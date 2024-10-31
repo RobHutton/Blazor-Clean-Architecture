@@ -1,8 +1,8 @@
-﻿using BlazingBlog.Application.Authentication;
-using BlazingBlog.Infrastructure.Users;
+﻿using BlazorCleanArchitecture.Application.Authentication;
+using BlazorCleanArchitecture.Infrastructure.Users;
 using Microsoft.AspNetCore.Identity;
 
-namespace BlazingBlog.Infrastructure.Authentication
+namespace BlazorCleanArchitecture.Infrastructure.Authentication
 {
     public class AuthenticationService : IAuthenticationService
     {

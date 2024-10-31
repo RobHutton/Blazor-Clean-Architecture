@@ -1,6 +1,6 @@
-﻿using BlazingBlog.Domain.Abstractions;
+﻿using BlazorCleanArchitecture.Domain.Abstractions;
 
-namespace BlazingBlog.Domain.Articles
+namespace BlazorCleanArchitecture.Domain.Articles
 {
     public class Article : Entity
     {

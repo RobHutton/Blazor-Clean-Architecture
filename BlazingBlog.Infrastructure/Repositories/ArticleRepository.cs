@@ -1,7 +1,7 @@
-﻿using BlazingBlog.Domain.Articles;
+﻿using BlazorCleanArchitecture.Domain.Articles;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazingBlog.Infrastructure.Repositories
+namespace BlazorCleanArchitecture.Infrastructure.Repositories
 {
 	public class ArticleRepository : IArticleRepository
 	{

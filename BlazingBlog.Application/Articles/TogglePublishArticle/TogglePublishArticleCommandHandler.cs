@@ -1,7 +1,7 @@
 ﻿
-using BlazingBlog.Application.Users;
+using BlazorCleanArchitecture.Application.Users;
 
-namespace BlazingBlog.Application.Articles.TogglePublishArticle
+namespace BlazorCleanArchitecture.Application.Articles.TogglePublishArticle
 {
     public class TogglePublishArticleCommandHandler : ICommandHandler<TogglePublishArticleCommand, ArticleDto>
     {

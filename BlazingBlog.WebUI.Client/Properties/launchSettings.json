@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "BlazingBlog.WebUI.Client": {
+    "BlazorCleanArchitecture.WebUI.Client": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

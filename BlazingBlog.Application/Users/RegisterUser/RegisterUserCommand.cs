@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Users.RegisterUser
+﻿namespace BlazorCleanArchitecture.Application.Users.RegisterUser
 {
     public class RegisterUserCommand : ICommand
     {

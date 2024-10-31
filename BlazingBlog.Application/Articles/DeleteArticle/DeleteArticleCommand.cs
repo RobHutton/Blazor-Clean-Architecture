@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Articles.DeleteArticle
+﻿namespace BlazorCleanArchitecture.Application.Articles.DeleteArticle
 {
     public class DeleteArticleCommand : ICommand
     {

@@ -1,8 +1,8 @@
-﻿using BlazingBlog.Application.Articles.GetArticleById;
-using BlazingBlog.Application.Users;
-using BlazingBlog.Domain.Users;
+﻿using BlazorCleanArchitecture.Application.Articles.GetArticleById;
+using BlazorCleanArchitecture.Application.Users;
+using BlazorCleanArchitecture.Domain.Users;
 
-namespace BlazingBlog.Application.Articles.GetArticlebyId
+namespace BlazorCleanArchitecture.Application.Articles.GetArticlebyId
 {
     public class GetArticleByIdQueryHandler : IQueryHandler<GetArticleByIdQuery, ArticleDto?>
     {

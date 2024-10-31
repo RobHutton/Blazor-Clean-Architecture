@@ -1,7 +1,7 @@
-﻿using BlazingBlog.Application.Users;
-using BlazingBlog.Domain.Users;
+﻿using BlazorCleanArchitecture.Application.Users;
+using BlazorCleanArchitecture.Domain.Users;
 
-namespace BlazingBlog.Application.Articles.GetArticles
+namespace BlazorCleanArchitecture.Application.Articles.GetArticles
 {
     public class GetArticlesQueryHandler : IQueryHandler<GetArticlesQuery, List<ArticleDto>>
     {

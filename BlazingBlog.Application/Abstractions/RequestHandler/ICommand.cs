@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace BlazingBlog.Application.Abstractions.RequestHandler
+namespace BlazorCleanArchitecture.Application.Abstractions.RequestHandler
 {
     public interface ICommand : IRequest<Result>
     {

@@ -1,7 +1,7 @@
 ﻿
-using BlazingBlog.Application.Authentication;
+using BlazorCleanArchitecture.Application.Authentication;
 
-namespace BlazingBlog.Application.Users.LoginUser
+namespace BlazorCleanArchitecture.Application.Users.LoginUser
 {
     public class LoginUserCommandHandler : ICommandHandler<LoginUserCommand>
     {

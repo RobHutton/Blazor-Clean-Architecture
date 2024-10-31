@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Users
+﻿namespace BlazorCleanArchitecture.Application.Users
 {
     public record struct UserDto
     (

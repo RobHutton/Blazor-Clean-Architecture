@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Articles.GetArticleById
+﻿namespace BlazorCleanArchitecture.Application.Articles.GetArticleById
 {
     public class GetArticleByIdQuery : IQuery<ArticleDto?>
     {

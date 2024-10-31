@@ -1,7 +1,7 @@
-﻿using BlazingBlog.Application.Exceptions;
-using BlazingBlog.Application.Users;
+﻿using BlazorCleanArchitecture.Application.Exceptions;
+using BlazorCleanArchitecture.Application.Users;
 
-namespace BlazingBlog.Application.Articles.DeleteArticle
+namespace BlazorCleanArchitecture.Application.Articles.DeleteArticle
 {
     public class DeleteArticleCommandHandler : ICommandHandler<DeleteArticleCommand>
     {

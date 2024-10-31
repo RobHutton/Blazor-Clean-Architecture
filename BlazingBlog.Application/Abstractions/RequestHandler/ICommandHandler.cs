@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace BlazingBlog.Application.Abstractions.RequestHandler
+namespace BlazorCleanArchitecture.Application.Abstractions.RequestHandler
 {
     // CQRS Pattern
     // Command Handler for commands that do not return any specific result other than success or failure

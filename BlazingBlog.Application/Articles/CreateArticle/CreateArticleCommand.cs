@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Articles.CreateArticle
+﻿namespace BlazorCleanArchitecture.Application.Articles.CreateArticle
 {
     public class CreateArticleCommand : ICommand<ArticleDto>
     {

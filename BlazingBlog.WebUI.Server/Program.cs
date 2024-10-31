@@ -1,6 +1,6 @@
-using BlazingBlog.Application;
-using BlazingBlog.Infrastructure;
-using BlazingBlog.WebUI.Server;
+using BlazorCleanArchitecture.Application;
+using BlazorCleanArchitecture.Infrastructure;
+using BlazorCleanArchitecture.WebUI.Server;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -33,7 +33,7 @@ app.UseAntiforgery();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(BlazingBlog.WebUI.Client.Features.Articles.Components.MyArticles).Assembly);
+    .AddAdditionalAssemblies(typeof(BlazorCleanArchitecture.WebUI.Client.Features.Articles.Components.MyArticles).Assembly);
 
 app.MapControllers();
 

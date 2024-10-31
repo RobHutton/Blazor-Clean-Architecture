@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlazingBlog.Application\BlazingBlog.Application.csproj" />
+    <ProjectReference Include="..\BlazingBlog.Application\BlazorCleanArchitecture.Application.csproj" />
   </ItemGroup>
 
 </Project>

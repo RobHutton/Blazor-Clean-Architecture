@@ -1,5 +1,5 @@
 ﻿
-namespace BlazingBlog.Application.Users.AddRoleToUser
+namespace BlazorCleanArchitecture.Application.Users.AddRoleToUser
 {
     public class AddRoleToUserCommandHandler : ICommandHandler<AddRoleToUserCommand>
     {

@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Articles.TogglePublishArticle
+﻿namespace BlazorCleanArchitecture.Application.Articles.TogglePublishArticle
 {
     public class TogglePublishArticleCommand : ICommand<ArticleDto>
     {

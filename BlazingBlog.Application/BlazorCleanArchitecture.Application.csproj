@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlazingBlog.Domain\BlazingBlog.Domain.csproj" />
+    <ProjectReference Include="..\BlazingBlog.Domain\BlazorCleanArchitecture.Domain.csproj" />
   </ItemGroup>
 
 </Project>

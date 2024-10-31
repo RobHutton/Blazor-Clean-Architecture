@@ -1,4 +1,4 @@
-﻿namespace BlazingBlog.Application.Authentication
+﻿namespace BlazorCleanArchitecture.Application.Authentication
 {
     public class RegisterUserResponse
     {

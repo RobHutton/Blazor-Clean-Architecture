@@ -1,10 +1,10 @@
-﻿using BlazingBlog.Application.Authentication;
-using BlazingBlog.Application.Users;
-using BlazingBlog.Domain.Articles;
-using BlazingBlog.Domain.Users;
-using BlazingBlog.Infrastructure.Authentication;
-using BlazingBlog.Infrastructure.Repositories;
-using BlazingBlog.Infrastructure.Users;
+﻿using BlazorCleanArchitecture.Application.Authentication;
+using BlazorCleanArchitecture.Application.Users;
+using BlazorCleanArchitecture.Domain.Articles;
+using BlazorCleanArchitecture.Domain.Users;
+using BlazorCleanArchitecture.Infrastructure.Authentication;
+using BlazorCleanArchitecture.Infrastructure.Repositories;
+using BlazorCleanArchitecture.Infrastructure.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BlazingBlog.Infrastructure
+namespace BlazorCleanArchitecture.Infrastructure
 {
     public static class DependencyInjection
     {

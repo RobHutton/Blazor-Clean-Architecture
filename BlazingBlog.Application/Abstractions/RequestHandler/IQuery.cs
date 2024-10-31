@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace BlazingBlog.Application.Abstractions.RequestHandler
+namespace BlazorCleanArchitecture.Application.Abstractions.RequestHandler
 {
     // CQRS QUERY PATTERN
     // The IQuery interface inherits from the IRequest interface, meaning it can be processed by a mediator.
