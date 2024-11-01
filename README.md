@@ -1,4 +1,4 @@
-# Blazor Clean Architecture
+# Blazor Clean Architecture + CQRS with MediatR
 
 In the evolving landscape of web development, Blazor stands out as a revolutionary framework that empowers developers to build rich, interactive web applications with the elegance of C# and the power of .NET 8. By harnessing the capabilities of Single-Page Applications (SPAs), Blazor provides a robust environment that caters to both client-side and server-side execution, ensuring fast, real-time updates and seamless user experiences. This article delves into the intricacies of Blazor, exploring its architecture, including Clean Architecture, the CQRS pattern with MediatR, and the innovative Vertical Slice Architecture that streamlines the development process.
 
